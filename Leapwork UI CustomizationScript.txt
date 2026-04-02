@@ -31,9 +31,10 @@ function GetSchedules()
 
 function GetSchedule()
 {
+    const controllerApiUrl = buildControllerApiUrl(document.getElementById('leapworkControllerURL').value, "api/v4/Schedules");
 
     (jQuery).ajax({
-        url: document.getElementById('leapworkControllerURL').value + "/api/v4/Schedules",
+        url: controllerApiUrl,
 	headers: {'AccessKey': leapworkAccesskey.value},
         type: 'GET',
         dataType: "json",
@@ -121,4 +122,52 @@ function ShowLeapworkDialog()
 
 function HideLeapworkDialog() {
     document.getElementById('leapworkDialog').setAttribute('style', 'display: none; z - index: 1002; outline: 0px; height: 500px; width: 800px; position: absolute; top: 175px; left: 190px;');
+}
+
+function buildControllerApiUrl(input, relativePath) {
+    const url = getControllerBaseUrl(input);
+    const normalizedBasePath = (url.pathname || "/").replace(/\/+$/, "");
+    const normalizedRelativePath = (relativePath || "").replace(/^\/+/, "");
+    url.pathname = normalizedBasePath + "/" + normalizedRelativePath;
+    return url.toString();
+}
+
+function getControllerBaseUrl(input) {
+    const trimmedInput = normalizeUrlQuerySeparators((input || "").trim());
+    const candidate = isAbsoluteUrl(trimmedInput) ? trimmedInput : "http://" + trimmedInput;
+    const url = new URL(candidate);
+
+    if (!url.port) {
+        url.port = "9001";
+    }
+
+    if (!url.pathname) {
+        url.pathname = "/";
+    }
+
+    return url;
+}
+
+function isAbsoluteUrl(input) {
+    try {
+        const url = new URL(input);
+        return url.protocol === "http:" || url.protocol === "https:";
+    } catch (e) {
+        return false;
+    }
+}
+
+function normalizeUrlQuerySeparators(input) {
+    if (!input || !input.trim()) {
+        return input;
+    }
+
+    const firstQuestionMarkIndex = input.indexOf("?");
+    if (firstQuestionMarkIndex < 0) {
+        return input;
+    }
+
+    const pathPart = input.substring(0, firstQuestionMarkIndex + 1);
+    const queryPart = input.substring(firstQuestionMarkIndex + 1).replace(/\?/g, "&");
+    return pathPart + queryPart;
 }

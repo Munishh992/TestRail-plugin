@@ -15,24 +15,18 @@ public class Main {
 	private static PluginHandler pluginHandler = PluginHandler.getInstance(loggerName);
 
 	public static void main(String[] args) throws IOException, APIException {
-		
-		/*
-		 * final String testRailRunId = args[0]; final String testRailAddress = args[1];
-		 * final String testRailLogin = args[2]; final String testRailPassword =
-		 * args[3]; final String leapworkHostURL = args[4]; final String scheduleId =
-		 * args[5]; final String delay = args[6]; final String doneStatusAs = args[7];
-		 * final String apiAccesskey = args[8];
-		 */
+		if (args.length < 9)
+			throw new IllegalArgumentException("Expected 9 arguments");
 
-		final String testRailRunId = "19";
-		final String testRailAddress = "http://localhost:85";
-		final String testRailLogin = "admin@leapwork.com";
-		final String testRailPassword = "admin";
-		final String leapworkHostURL = "http://localhost:9001";
-		final String scheduleId = "6a5f047b-b75e-4f07-8eb7-8ab754554bea";
-		final String delay = "10";
-		final String doneStatusAs = "5";
-		final String apiAccesskey = "qwertyui";
+		final String testRailRunId = args[0];
+		final String testRailAddress = args[1];
+		final String testRailLogin = args[2];
+		final String testRailPassword = args[3];
+		final String leapworkHostURL = args[4];
+		final String scheduleId = args[5];
+		final String delay = args[6];
+		final String doneStatusAs = args[7];
+		final String apiAccesskey = args[8];
 	
 		FileHandler logFileHandler = new FileHandler(String.format(Messages.LOG_FILE_NAME, testRailRunId));
 		logger.addHandler(logFileHandler);
@@ -43,7 +37,7 @@ public class Main {
 
 		logger.info(String.format("Passed parameters:\n%1$s\n%2$s\n%3$s\n%4$s\n%5$s\n%6$s\n%7$s\n%8$s\n",
 				String.format("Run Id: %1$s", testRailRunId), String.format("TestRail URL: %1$s", testRailAddress),
-				String.format("TestRail User: %1$s", testRailLogin), String.format("Leapwork Controller URL: %1$s", testRailPassword),
+				String.format("TestRail User: %1$s", testRailLogin), String.format("Leapwork Controller URL: %1$s", leapworkHostURL),
 				String.format("Schedule Id: %1$s", scheduleId), String.format("Time Delay in seconds: %1$s", delay),
 				String.format("Done Status is interpreted as status number: %1$s",doneStatusAs),
 				String.format("api accesskey", apiAccesskey).replace("\n", Messages.NEW_LINE)));
