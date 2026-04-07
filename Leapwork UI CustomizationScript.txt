@@ -1,7 +1,7 @@
 name: Leapwork Integration
 description: Run a Leapwork schedule and adds test results for step case type
 author: Leapwork
-version: 1.0
+version: 1.1
 includes: ^runs/view
 excludes: 
 
