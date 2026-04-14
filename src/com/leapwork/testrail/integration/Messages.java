@@ -21,12 +21,12 @@ public final class Messages {
 	public static final String CASE_KEYFRAME_FORMAT = "%1$s - %2$s";
 	public static final String CASE_KEYFRAME_FORMAT_WITHBLOCKTITLE = "%1$s - %2$s - %3$s";
 
-	public static final String GET_SPECIFIC_SCHEDULE_PATH = "api/v4/schedules/%1$s";
-	public static final String GET_RUN_ITEMS_PATH = "api/v4/run/%1$s/runItemIds";
-	public static final String GET_RUNITEMIDINFO_PATH = "api/v4/runItems/%1$s";
-	public static final String RUN_SCHEDULE_PATH = "api/v4/schedules/%1$s/runNow";
-	public static final String GET_SCHEDULE_STATE_PATH = "api/v4/run/%1$s/status";
-	public static final String GET_KEYFRAMES_PATH = "api/v4/runitems/%1$s/keyframes";
+	public static final String GET_SPECIFIC_SCHEDULE_URI = "api/v4/schedules/%1$s";
+	public static final String GET_RUN_ITEMS_URI = "api/v4/run/%1$s/runItemIds";
+	public static final String GET_RUNITEMIDINFO_URI = "api/v4/runItems/%1$s";
+	public static final String RUN_SCHEDULE_URI = "api/v4/schedules/%1$s/runNow";
+	public static final String GET_SCHEDULE_STATE_URI = "api/v4/run/%1$s/status";
+	public static final String GET_KEYFRAMES_URI = "api/v4/runitems/%1$s/keyframes";
 
 	public static final String PLUGIN_SUCCESSFUL_FINISH = "leapwork for TestRail  plugin  successfully finished";
 	public static final String PLUGIN_ERROR_FINISH = "leapwork for TestRail plugin finished with errors";

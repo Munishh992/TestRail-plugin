@@ -145,7 +145,7 @@ public final class PluginHandler {
 		Schedule schedule = null;
 
 		String scheduleListUri = buildControllerApiUri(leapworkHost,
-				String.format(Messages.GET_SPECIFIC_SCHEDULE_PATH, scheduleId));
+				String.format(Messages.GET_SPECIFIC_SCHEDULE_URI, scheduleId));
 
 		try {
 
@@ -243,10 +243,11 @@ public final class PluginHandler {
 		RUN_RESULT isSuccessfullyRun = RUN_RESULT.RUN_FAIL;
 
 		String uri = buildControllerApiUri(leapworkHost,
-				String.format(Messages.RUN_SCHEDULE_PATH, schedule.getScheduleId()));
+				String.format(Messages.RUN_SCHEDULE_URI, schedule.getScheduleId()));
 		AsyncHttpClient client = new AsyncHttpClient();
 		try {
 			try {
+				logger.info("Leapwork request URL: " + uri);
 
 				Response response = client.preparePut(uri).setHeader("AccessKey", accesskey).setBody("").execute()
 						.get();
@@ -345,7 +346,7 @@ public final class PluginHandler {
 		boolean isScheduleStillRunning = true;
 
 		String uri = buildControllerApiUri(leapworkHost,
-				String.format(Messages.GET_SCHEDULE_STATE_PATH, schedule.getLeapRunId()));
+				String.format(Messages.GET_SCHEDULE_STATE_URI, schedule.getLeapRunId()));
 
 		try {
 
@@ -365,7 +366,7 @@ public final class PluginHandler {
 						isScheduleStillRunning = false;
 
 						String runItemsUri = buildControllerApiUri(leapworkHost,
-								String.format(Messages.GET_RUN_ITEMS_PATH, schedule.getLeapRunId()));
+								String.format(Messages.GET_RUN_ITEMS_URI, schedule.getLeapRunId()));
 						Response runItemIdsJson = client.prepareGet(runItemsUri).setHeader("AccessKey", accesskey)
 								.execute().get();
 
@@ -382,7 +383,7 @@ public final class PluginHandler {
 							String statusStr = "";
 							String elapsed = "";
 							String uriRunItemIdInfo = buildControllerApiUri(leapworkHost,
-									String.format(Messages.GET_RUNITEMIDINFO_PATH, strRunItemId));
+									String.format(Messages.GET_RUNITEMIDINFO_URI, strRunItemId));
 							Response runItemIdResp = client.prepareGet(uriRunItemIdInfo)
 									.setHeader("AccessKey", accesskey).execute().get();
 
@@ -405,7 +406,7 @@ public final class PluginHandler {
 							}
 
 							String uriKeyFrameInfo = buildControllerApiUri(leapworkHost,
-									String.format(Messages.GET_KEYFRAMES_PATH, strRunItemId));
+									String.format(Messages.GET_KEYFRAMES_URI, strRunItemId));
 							Response keyFrameResp = client.prepareGet(uriKeyFrameInfo).setHeader("AccessKey", accesskey)
 									.execute().get();
 							String keyFrames = String.format("CaseTitle: %1$s%2$s", caseTitle, Messages.NEW_LINE);
@@ -671,18 +672,15 @@ public final class PluginHandler {
 	private URI getControllerApiHttpAddress(String leapworkHost) throws Exception {
 		String trimmedInput = normalizeUrlQuerySeparators(leapworkHost == null ? "" : leapworkHost.trim());
 		String uriCandidate;
-		URI parsedUri;
 
-		if (isAbsoluteUri(trimmedInput))
-			parsedUri = new URI(trimmedInput);
-		else {
-			if (trimmedInput.contains("/") || trimmedInput.contains("?") || trimmedInput.contains(":"))
-				uriCandidate = "http://" + trimmedInput;
-			else
-				uriCandidate = "http://" + trimmedInput;
+		if (trimmedInput.startsWith("http://") || trimmedInput.startsWith("https://"))
+			uriCandidate = trimmedInput;
+		else if (trimmedInput.contains("/") || trimmedInput.contains("?"))
+			uriCandidate = "http://" + trimmedInput;
+		else
+			uriCandidate = "http://" + trimmedInput;
 
-			parsedUri = new URI(uriCandidate);
-		}
+		URI parsedUri = new URI(uriCandidate);
 
 		if (parsedUri.getHost() == null)
 			throw new IllegalArgumentException("Invalid controller URL");
@@ -690,20 +688,6 @@ public final class PluginHandler {
 		int port = parsedUri.getPort() == -1 ? 9001 : parsedUri.getPort();
 		return new URI(parsedUri.getScheme(), null, parsedUri.getHost(), port, ensureRootPath(parsedUri.getPath()),
 				parsedUri.getQuery(), null);
-	}
-
-	private boolean isAbsoluteUri(String input) {
-		try {
-			if (input == null || input.isEmpty())
-				return false;
-
-			URI uri = new URI(input);
-			String scheme = uri.getScheme();
-			return uri.isAbsolute() && uri.getHost() != null
-					&& ("http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme));
-		} catch (URISyntaxException e) {
-			return false;
-		}
 	}
 
 	private String normalizeUrlQuerySeparators(String input) {
