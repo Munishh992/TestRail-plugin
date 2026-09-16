@@ -18,8 +18,8 @@
       "WorkflowStatusId": "1368161e-584c-4c64-999d-85dd0eed4370",
       "AgentConfigurationId": "",
       "Description": "",
-      "DateCreation": "9/15/2026 5:03:12 PM +00:00",
-      "DateModify": "9/15/2026 5:03:12 PM +00:00",
+      "DateCreation": "9/16/2026 6:34:09 AM +00:00",
+      "DateModify": "9/16/2026 6:34:09 AM +00:00",
       "Title": "New Flow",
       "Type": "Flow",
       "IsDeleted": "False",
@@ -36,8 +36,8 @@
         "BuildingBlocks": [
           {
             "Title": "Pass",
-            "XPosition": "5380",
-            "YPosition": "5080",
+            "XPosition": "5340",
+            "YPosition": "5090",
             "IsExpanded": "True",
             "Width": "150",
             "TemplateId": "",
@@ -55,7 +55,7 @@
                 "Key": "Text",
                 "Title": "",
                 "SortOrder": "1",
-                "ValueId": "12553631-ea2f-44da-9e19-b4c6b1120116",
+                "ValueId": "56c0e69b-3950-4b9f-b1f9-b4c73df2006c",
                 "LType": "LSignal",
                 "IsExpanded": "False",
                 "IsBlockPropertyChecked": "",
@@ -70,7 +70,7 @@
                     "Key": "TokenizedText",
                     "Title": "",
                     "SortOrder": "0",
-                    "ValueId": "147f49f0-4cd4-4a13-bbfb-b4c6b1120116",
+                    "ValueId": "95b8c99c-aa9d-40a8-a2d1-b4c73df2006c",
                     "LType": "LText",
                     "IsExpanded": "False",
                     "IsBlockPropertyChecked": "",
@@ -80,7 +80,7 @@
                     "Connections": [],
                     "Value": {
                       "Value": "",
-                      "Id": "147f49f0-4cd4-4a13-bbfb-b4c6b1120116"
+                      "Id": "95b8c99c-aa9d-40a8-a2d1-b4c73df2006c"
                     }
                   }
                 ],
@@ -94,10 +94,10 @@
                 "Key": "Header",
                 "Title": "Pass",
                 "SortOrder": "0",
-                "ValueId": "e7649969-1414-4758-8599-b4c6b1120116",
+                "ValueId": "98038910-0376-467d-b9b6-b4c73df2006c",
                 "LType": "LSignal",
                 "IsExpanded": "False",
-                "IsBlockPropertyChecked": "",
+                "IsBlockPropertyChecked": "True",
                 "CustomSortOrder": "0",
                 "Id": "e61d466f-35a2-4409-958d-bb0319e26528",
                 "ChildProperties": [],
@@ -126,7 +126,7 @@
                 "Key": "StartAction",
                 "Title": "",
                 "SortOrder": "1",
-                "ValueId": "45becbb6-732c-4efa-a8ff-b4c6b1120116",
+                "ValueId": "f4137013-ee37-4fc7-b49b-b4c73df2006c",
                 "LType": "LText",
                 "IsExpanded": "False",
                 "IsBlockPropertyChecked": "True",
@@ -136,7 +136,7 @@
                 "Connections": [],
                 "Value": {
                   "Value": "NoAction",
-                  "Id": "45becbb6-732c-4efa-a8ff-b4c6b1120116"
+                  "Id": "f4137013-ee37-4fc7-b49b-b4c73df2006c"
                 }
               },
               {
@@ -147,10 +147,10 @@
                 "Key": "Header",
                 "Title": "Start",
                 "SortOrder": "0",
-                "ValueId": "83c6b8a3-20cc-4913-b06f-b4c6b1120116",
+                "ValueId": "d1f0e3d0-4acb-4be8-a0fe-b4c73df2006c",
                 "LType": "LSignal",
                 "IsExpanded": "False",
-                "IsBlockPropertyChecked": "",
+                "IsBlockPropertyChecked": "True",
                 "CustomSortOrder": "0",
                 "Id": "fc29f8d6-e076-40a6-bad8-7beb5a366ba8",
                 "ChildProperties": [],
@@ -158,7 +158,7 @@
                   {
                     "OutputFlowPropertyId": "fc29f8d6-e076-40a6-bad8-7beb5a366ba8",
                     "InputFlowPropertyId": "e61d466f-35a2-4409-958d-bb0319e26528",
-                    "Id": "644f1c11-4dcb-4213-ad28-b4c6b1120116",
+                    "Id": "75839926-9af7-4c5c-b821-b4c73df2006c",
                     "WireGuides": []
                   }
                 ]
