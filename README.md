@@ -40,3 +40,5 @@ For rapid results, at lower cost, and requiring fewer specialist resources than 
 ![ScreenShot](https://github.com/leapwork/TestRail-plugin/blob/main/images/TestStepsScreenshot.png)
 
 - Git versioning access validated by Leapwork at 2026-09-24 08:36:38 UTC.
+
+- Git versioning access validated by Leapwork at 2026-09-24 09:15:01 UTC.
